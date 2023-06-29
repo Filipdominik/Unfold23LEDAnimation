@@ -1,0 +1,63 @@
+<html lang="nl">
+
+<head>
+    <script type="text/javascript">
+        function Led_On(ledID) {
+            //get image element by ID (ledID)
+            var led = document.getElementById(ledID);
+            //change image source to on image
+            led.src = "/led_on.png";
+            //toggle class: ON
+            led.classList.toggle("ON");
+        }
+
+        function Led_Off(ledID) {
+            //get image element by ID (ledID)
+            var led = document.getElementById(ledID);
+            //change image source to off image
+            led.src = "/led_off.png";
+            //toggle class: ON
+            led.classList.toggle("ON");
+        }
+
+        function Next_Led() {
+            //get element with class: ON and read its ID
+            var led = document.getElementsByClassName("ON")[0];
+            var ledID = led.id;
+            Led_Off(ledID);
+            //get the number out of the ledId:
+            if (ledID == "led10") {
+                ledID = "led0";
+            }
+            var ledNumber = ledID.replace("led", "");
+            console.log(ledNumber);
+            var NextLedID = 'led' + (parseInt(ledNumber) + 1);
+            Led_On(NextLedID.toString());
+        }
+
+        setInterval(Next_Led, 200);
+
+    </script>
+</head>
+
+<body>
+    <div class="LEDS" style="
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;">
+        <!--10 led, each time the same image (led_off.png), each with a unqiue ID-->
+        <img id="led1" class="ON" src="/led_on.png" style="height: 200px;margin: 20px;">
+        <img id="led2" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led3" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led4" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led5" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led6" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led7" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led8" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led9" src="/led_off.png" style="height: 200px;margin: 20px;">
+        <img id="led10" src="/led_off.png" style="height: 200px;margin: 20px;">
+    </div>
+</body>
+
+</html>
